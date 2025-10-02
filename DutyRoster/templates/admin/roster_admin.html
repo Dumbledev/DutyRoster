@@ -1,0 +1,121 @@
+{% extends "admin/admin_base.html" %}
+{% block body %}
+<!-- source https://gist.github.com/dsursulino/369a0998c0fc8c25e19962bce729674f -->
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet" /> -->
+
+<main class="p-6 space-y-6">
+     <div class="bg-white rounded-lg shadow-md">
+        <div class="p-4 border-b font-bold text-purple-700">Staff List for {{roster.title}}</div>
+        <table class="w-full text-left">
+            <thead class="bg-purple-50">
+            <tr>
+                <th class="p-4">Name</th>
+                <th class="p-4">Email</th>
+                <th class="p-4">Academic</th>
+                <!-- <th class="p-4">No.Staffs</th> -->
+                <th class="p-4">Role</th>
+                <!-- <th class="p-4">Add Staff</th> -->
+            </tr>
+            </thead>
+            <tbody>
+            {% for staff in roster.staffs %}
+                <tr class="border-t">
+                    <td class="p-4">{{staff.name}}</td>
+                    <td class="p-4">{{staff.email}}</td>
+                    <td class="p-4">{{staff.academic}}</td>
+                    <td class="p-4">{{staff.role}}</td>
+                    <!-- <td class="p-4 flex gap-3">
+                        <a href="/update_roster/{{roster._id}}" class="text-green-700">Update</a>
+                        <a href="/delete_roster/{{roster._id}}"" class="text-red-700">Delete</a>
+                    </td>
+                    <td class="p-4">
+                        <a href="/roster_add_staff/{{roster._id}}" class="text-green-700">Add Staff</a>
+                    </td>                     -->
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+        <form action="/roster_admin" method="post">
+            <div class="flex flex-col w-full">
+                <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+                        <div class="overflow-hidden">
+                            <table class="min-w-full">
+                                <thead class="border-b">
+                                    <tr>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">Days</th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">9-11</th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">11-1</th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">1-3</th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">3-5</th>
+                                        <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">5-end</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">Monday</td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Monday/9:00">{{roster.duties.Monday["9:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Monday/11:00">{{roster.duties.Monday["11:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Monday/1:00">{{roster.duties.Monday["1:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Monday/3:00">{{roster.duties.Monday["3:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Monday/5:00">{{roster.duties.Monday["5:00"]}}</a></td>
+                                    </tr>
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">Tuesday</td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Tuesday/9:00">{{roster.duties.Tuesday["9:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Tuesday/11:00">{{roster.duties.Tuesday["11:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Tuesday/1:00">{{roster.duties.Tuesday["1:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Tuesday/3:00">{{roster.duties.Tuesday["3:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Tuesday/5:00">{{roster.duties.Tuesday["5:00"]}}</a></td>
+                                    </tr>
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">Wednesday</td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Wednesday/9:00">{{roster.duties.Wednesday["9:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Wednesday/11:00">{{roster.duties.Wednesday["11:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Wednesday/1:00">{{roster.duties.Wednesday["1:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Wednesday/3:00">{{roster.duties.Wednesday["3:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Wednesday/5:00">{{roster.duties.Wednesday["5:00"]}}</a></td>
+                                    </tr>
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">Thursday</td>                            
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Thursday/9:00">{{roster.duties.Thursday["9:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Thursday/11:00">{{roster.duties.Thursday["11:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Thursday/1:00">{{roster.duties.Thursday["1:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Thursday/3:00">{{roster.duties.Thursday["3:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Thursday/5:00">{{roster.duties.Thursday["5:00"]}}</a></td>
+                                    </tr> 
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">Friday</td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Friday/9:00">{{roster.duties.Friday["9:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Friday/11:00">{{roster.duties.Friday["11:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Friday/1:00">{{roster.duties.Friday["1:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Friday/3:00">{{roster.duties.Friday["3:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Friday/5:00">{{roster.duties.Friday["5:00"]}}</a></td>
+                                    </tr>      
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">Saturday</td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Saturday/9:00">{{roster.duties.Saturday["9:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Saturday/11:00">{{roster.duties.Saturday["11:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Saturday/1:00">{{roster.duties.Saturday["1:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Saturday/3:00">{{roster.duties.Saturday["3:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Saturday/5:00">{{roster.duties.Saturday["5:00"]}}</a></td>
+                                    </tr>
+                                    <tr class="bg-white border-b">
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm  text-gray-900 font-bold">Sunday</td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Sunday/9:00">{{roster.duties.Sunday["9:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Sunday/11:00">{{roster.duties.Sunday["11:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Sunday/1:00">{{roster.duties.Sunday["1:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Sunday/3:00">{{roster.duties.Sunday["3:00"]}}</a></td>
+                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"><a href="/add_duty/{{roster._id}}/Sunday/5:00">{{roster.duties.Sunday["5:00"]}}</a></td>
+                                    </tr>                                                                                         
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </form>
+</main>    
+{% endblock %}

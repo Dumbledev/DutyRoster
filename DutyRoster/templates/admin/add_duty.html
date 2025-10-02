@@ -1,0 +1,30 @@
+{% extends "admin/admin_base.html" %}
+{% block body %}
+<main class="p-6 space-y-6">
+    <form method="post" action="/add_duty/{{roster_id}}/{{day}}/{{time}}" class="flex justify-center items-center h-screen bg-gray-100 dark:bg-gray-800">
+        <div class="p-4 text-gray-600 dark:text-gray-300 outline-none focus:outline-none">
+            <div class="relative flex">   
+                <input 
+                    type="search" 
+                    name="search"
+                    placeholder="Search"
+                    class="bg-[#191E2E] dark:bg-gray-800 border-r-0 relative left-10 h-10 flex px-5 w-full rounded-full text-sm focus:outline-none border-2  border-gray-500 dark:border-gray-600"
+                    autocomplete="off" 
+                    spellcheck="false" 
+                    step="any" 
+                    autocapitalize="none" 
+                    autofocus />
+                    
+                    <select name="name" class="bg-[#191E2E] dark:bg-gray-800 h-10 px-5 xs:invisible relative left-5  rounded-r-full text-white text-sm focus:outline-none outline-none border-2 border-gray-500 border-l-0 dark:border-gray-600 border-r-1 cursor-pointer max-h-10 overflow-y-hidden">
+                        {% for item in staffs %}
+                            <option value="{{ item['name'] }}">{{ item['name'] }}</option>
+                        {% endfor %}        
+                    </select>
+                    <button type="submit" class="bg-[#435088] text-white dark:bg-gray-800 h-10 w-40 px-6 rounded-r-full text-sm focus:outline-none outline-none border-2 border-gray-500 dark:border-gray-600 border-r-1 cursor-pointer max-h-10 overflow-y-hidden">
+                        Save
+                </button>  
+            </div>
+        </div>
+    </form>
+</main>    
+{% endblock %}

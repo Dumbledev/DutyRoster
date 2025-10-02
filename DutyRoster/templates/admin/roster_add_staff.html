@@ -1,0 +1,39 @@
+{% extends "admin/admin_base.html" %}
+{% block body %}
+<!-- source https://gist.github.com/dsursulino/369a0998c0fc8c25e19962bce729674f -->
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet" /> -->
+
+<main class="p-6 space-y-6">
+<form action="/add_staff_handler" method="post">    
+    <input type="text" name="id" value="{{id}}" hidden>
+     <div class="bg-white rounded-lg shadow-md">
+        <div class="p-4 border-b font-bold text-purple-700">Add Staff</div>
+        <table class="w-full text-left">
+            <thead class="bg-purple-50">
+            <tr>
+                <th class="p-4">Title</th>
+                <th class="p-4">Description</th>
+                <th class="p-4">Academic</th>
+                <th class="p-4">Add Staff</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for staff in staffs %}
+                <tr class="border-t">
+                    <td class="p-4">{{staff._id}}</td>
+                    <td class="p-4">{{staff.email}}</td>
+                    <td class="p-4">{{staff.academic}}</td>
+                    <td class="p-4">
+                        <input type="checkbox" name="staffs" value="{{staff._id}}" id="">
+                    </td>                    
+                </tr>
+            {% endfor %}
+            </tbody>        
+        </table>        
+    </div>
+    <button class="bg-green-600 mt-3 w-full text-white py-3 rounded-lg shadow hover:bg-green-700 
+    flex items-center justify-center hover:cursor-pointer">Add Staff</button>
+    </form>    
+</main>    
+{% endblock %}

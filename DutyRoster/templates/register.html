@@ -1,0 +1,75 @@
+
+{% extends "base.html" %}
+{% block body %}
+<main class="dark:bg-gray-800 bg-white relative overflow-hidden h-screen">
+    <header class="h-24 sm:h-32 flex items-center z-30 w-full">
+        <div class="container mx-auto px-6 flex items-center justify-between">
+            <div class="uppercase text-gray-800 dark:text-white font-black text-3xl">
+                Work.Now
+            </div>
+            <div class="flex items-center">
+                <nav class="font-sen text-gray-800 dark:text-white uppercase text-lg lg:flex items-center hidden">
+                    <a href="/register" class="py-2 px-6 flex">
+                        Register
+                    </a>
+                    <a href="/login" class="py-2 px-6 flex">
+                        Login
+                    </a>
+                    <a href="#" class="py-2 px-6 flex">
+                        About
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div class="bg-white dark:bg-gray-800 flex relative z-20 items-center overflow-hidden">
+        <div class="container mx-auto px-6 flex relative">
+            <div class="sm:w-2/3 lg:w-2/5 flex flex-col relative z-20">
+                <span class="w-20 h-2 bg-gray-800 dark:bg-white mb-12">
+                </span>
+                {% if err %}
+                    <p>{{err}}</p>
+                {% endif %}
+                <form action="/register" method="post" class="flex flex-col justify-center bg-gray-900 shadow-md shadow-gray-700 p-5 rounded-2xl">
+                    <input type="text" name="name" placeholder="name" class="bg-white py-1 px-2 rounded-xl mb-8">
+                    <input type="text" name="email" placeholder="email" class="bg-white py-1 px-2 rounded-xl mb-8">
+                    <input type="text" name="password" placeholder="password" class="bg-white py-1 px-2 rounded-xl">
+                    <div class="rounded-md p-4 w-full mx-auto max-w-2xl">
+                        <div class="flex"> 
+                            <label class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 mr-7  hover:bg-indigo-300 cursor-pointer ">
+                                <input type="radio" name="academic" value="academic">
+                                <i class="pl-2">Academin</i>
+                            </label>
+
+                            <label class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                                <input type="radio" name="academic" value="non-academic">
+                                <i class="pl-2">Non-Academic</i>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="rounded-md p-4 w-full mx-auto max-w-2xl">
+                        <div class="flex"> 
+                            <label class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3 mr-7  hover:bg-indigo-300 cursor-pointer ">
+                                <input type="radio" name="role" value="admin">
+                                <i class="pl-2">Admin</i>
+                            </label>
+
+                            <label class="flex bg-gray-100 text-gray-700 rounded-md px-3 py-2 my-3  hover:bg-indigo-300 cursor-pointer ">
+                                <input type="radio" name="role" value="user">
+                                <i class="pl-2">User</i>
+                            </label>
+                        </div>
+                    </div>                    
+                    <button type="submit" class="w-full mt-2 bg-violet-700 py-2 rounded-2xl hover:cursor-pointer">Register</button>
+                </form>                    
+            </div>
+            <div class="hidden sm:block sm:w-1/3 lg:w-3/5 relative">
+                <img src="https://www.tailwind-kit.com/images/object/10.png" class="max-w-xs md:max-w-sm m-auto"/>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
+
+
+

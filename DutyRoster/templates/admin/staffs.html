@@ -1,0 +1,41 @@
+{% extends "admin/admin_base.html" %}
+{% block body %}
+<!-- source https://gist.github.com/dsursulino/369a0998c0fc8c25e19962bce729674f -->
+
+<!-- <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet" /> -->
+
+<main class="p-6 space-y-6">
+     <div class="bg-white rounded-lg shadow-md">
+        <div class="p-4 border-b font-bold text-purple-700">User List</div>
+        <table class="w-full text-left">
+            <thead class="bg-purple-50">
+            <tr>
+                <th class="p-4">Title</th>
+                <th class="p-4">Description</th>
+                <th class="p-4">Academic</th>
+                <th class="p-4">No.Staffs</th>
+                <th class="p-4">Action</th>
+                <th class="p-4">Add Staff</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for roster in rosters %}
+                <tr class="border-t">
+                    <td class="p-4">{{roster.title}}</td>
+                    <td class="p-4">{{roster.description}}</td>
+                    <td class="p-4">{{roster.academic}}</td>
+                    <td class="p-4">{{roster.staffs | length}}</td>
+                    <td class="p-4 flex gap-3">
+                        <a href="/update_roster/{{roster._id}}" class="text-green-700">Update</a>
+                        <a href="/delete_roster/{{roster._id}}"" class="text-red-700">Delete</a>
+                    </td>
+                    <td class="p-4 flex gap-3">
+                        <a href="/staffs/{{roster._id}}" class="text-green-700">Add Staff</a>
+                    </td>                    
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</main>    
+{% endblock %}

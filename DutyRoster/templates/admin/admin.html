@@ -1,0 +1,63 @@
+{% extends "admin/admin_base.html" %}
+{% block body %}    
+<main class="p-6 space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="text-sm text-gray-500">Total Users</p>
+            <h2 class="text-3xl font-bold text-purple-700 mt-2">{{users | length}}</h2>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="text-sm text-gray-500">Rosters</p>
+            <h2 class="text-3xl font-bold text-green-600 mt-2">{{rosters | length }}</h2>
+        </div>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="text-sm text-gray-500">Staffs</p>
+            <h2 class="text-3xl font-bold text-blue-600 mt-2">{{staffs | length }}</h2>
+        </div>
+        <!-- <div class="bg-white p-6 rounded-lg shadow-md">
+            <p class="text-sm text-gray-500">Pending Tickets</p>
+            <h2 class="text-3xl font-bold text-red-500 mt-2">12</h2>
+        </div> -->
+    </div>
+
+    <div class="bg-white rounded-lg shadow-md">
+        <div class="p-4 border-b font-bold text-purple-700">User List</div>
+        <table class="w-full text-left">
+            <thead class="bg-purple-50">
+            <tr>
+                <th class="p-4">Name</th>
+                <th class="p-4">Email</th>
+                <th class="p-4">Role</th>
+                <th class="p-4">Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr class="border-t">
+                    <td class="p-4">{{user.name}}</td>
+                    <td class="p-4">{{user.email}}</td>
+                    <td class="p-4">{{user.role}}</td>
+                    <td class="p-4 text-green-600 font-bold">Active</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md grid grid-cols-2 md:grid-cols-4 gap-4">
+    <a href="/new_roster" class="bg-purple-600 text-white py-3 rounded-lg shadow hover:bg-purple-700 flex items-center justify-center">New Roster</a href="/new_roster">
+    <button class="bg-blue-600 text-white py-3 rounded-lg shadow hover:bg-blue-700 flex items-center justify-center">Export Data</button>
+    <button class="bg-green-600 text-white py-3 rounded-lg shadow hover:bg-green-700 flex items-center justify-center">Generate Report</button>
+    <button class="bg-red-600 text-white py-3 rounded-lg shadow hover:bg-red-700 flex items-center justify-center">Delete Records</button>
+    </div>
+
+    <div class="bg-white p-6 rounded-lg shadow-md flex items-center gap-6">
+    <img src="https://i.pravatar.cc/100" alt="Profile" class="w-20 h-20 rounded-full shadow">
+    <div>
+        <h3 class="text-xl font-bold text-purple-700">Sophia Ray</h3>
+        <p class="text-gray-500">Administrator</p>
+        <button class="mt-2 bg-purple-600 text-white px-4 py-2 rounded-lg shadow hover:bg-purple-700">Edit Profile</button>
+    </div>
+    </div>
+</main>  
+{% endblock %}
